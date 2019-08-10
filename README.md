@@ -6,5 +6,6 @@ Chat Tronic API is a personal project to build out a chat application that users
 
 ## Goals
 This project is being created for many reasons. 
--- First to reinforce and update existing knowledge
--- To create a portfolio piece for future employment.
+- First to reinforce and update existing knowledge
+- To create a portfolio piece for future employment
+- Use as a grounds to develop new ideas around chat and chat bots
