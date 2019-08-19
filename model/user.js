@@ -2,7 +2,7 @@
 
 // Get an instance of mongoose and mongoose.Schema
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 
 let userSchema = new mongoose.Schema({
     username: 'string',
