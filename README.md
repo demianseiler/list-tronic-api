@@ -1,8 +1,8 @@
-# chat-tronic-api
-Repository for the Chat Tronic API
+# list-tronic-api
+Repository for the Lisst Tronic API
 
 ## What
-Chat Tronic API is a personal project to build out a chat application that users can register for and use for real time chat.
+List Tronic API is a personal project to build out a list application that users can register for and use.
 
 ## Goals
 This project is being created for many reasons. 
