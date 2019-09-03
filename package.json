@@ -2,9 +2,9 @@
   "name": "chat-tronic-api",
   "version": "0.0.1",
   "description": "Chat API for eventual use with a chat bot",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon server.js",
     "test": "mocha ./tests --recursive"
   },
   "keywords": [],

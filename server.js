@@ -1,5 +1,5 @@
 /**
- * app.js is the main application file for the Chat Tronic API application.
+ * app.js is the main application file for the List Tronic API application.
  */
 'use strict';
 
@@ -21,7 +21,7 @@ const dotenv = require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens -- https://www.npmjs.com/package/jsonwebtoken
+const jwt = require('jsonwebtoken');
 
 // Create express 'app' object
 const app = express();
@@ -31,9 +31,13 @@ const DEFAULT_APP_PORT = 3000;
 const APP_PORT = ( process.env.API_PORT ||  DEFAULT_APP_PORT);
 
 // Setup DB connectivity
-mongoose.connect(process.env.MONGO_URL); // connect to database
+mongoose
+    .connect(process.env.MONGO_URL) // connect to database
+    .then(() => console.log("Connected to database."))
+    .catch(err => console.log(`Database Error: ${err}`)); 
+    
 
-// API ROUTES -------------------
+// Version 1 API Route Setup -------------------
 
 // get an instance of the router for api routes
 var apiRoutesV1 = express.Router();
@@ -41,6 +45,7 @@ var apiRoutesV1 = express.Router();
 // route middleware for CORS
 apiRoutesV1.use( (req, res, next) => {
 
+    // TODO: Change later once we have deployed to server
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Expose-Headers', 'x-access-token');
@@ -51,10 +56,10 @@ apiRoutesV1.use( (req, res, next) => {
 });
 
 
-
+// Begin Routes
 
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.send('Hello World Heartbeat');
 });
 
 // TODO: This will be removed before final commits.
@@ -91,4 +96,4 @@ app.use(bodyParser.json());
 app.use('/api/v1', apiRoutesV1);
 
 // Start 'app' and listen on for requests
-app.listen(APP_PORT, () => console.log(`Chat Tronic API application is listening on port ${APP_PORT}`));
+app.listen(APP_PORT, () => console.log(`List Tronic API application is listening on port ${APP_PORT}`));
