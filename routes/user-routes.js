@@ -1,12 +1,66 @@
 'use strict';
 
-// Load Input Validation
+// Load 3rd Party Packages
 const express = require('express');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+// Create Router
 const router = express.Router();
 
+// Load Keys For Auth
+const keys = require('../config/keys');
+
+// Load Input Validation
+const validateRegisterInput = require('../validation/register');
+const validateLoginInput = require('../validation/login');
 
 // Load User Model
 const User = require('../model/user');
+
+
+const register = (req, res, next) => {
+
+    // Form Validation
+    const { errors, isValid } = validateRegisterInput(req.body);
+
+    // Check Validation
+    if(!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    const query = {email: req.body.email};
+    User.findOne(query)
+        .then(user => {
+            if(user) {
+                return res.status(400).json({email: "Email already exists"});
+            }
+            else{
+                // User doesn't exist so let's create a new User object
+                const newUser = new User({
+                    username: req.body.username,
+                    password: req.body.password,
+                    email: req.body.email
+                });
+
+                // Hash the users password before saving it to the database
+                // TODO: Can we break this out to a utility class and use Async/Await
+                // TODO: Move salt number to config file?
+                bcrypt.genSalt(10, (err, salt) => {
+
+                });
+
+
+
+            }
+        })
+        .catch(err => {
+            // TODO: Update when error logging is handled
+            console.log('ERROR FINDING USER', err);
+        });
+
+};
+
 
 
 /**
