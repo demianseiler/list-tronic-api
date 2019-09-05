@@ -1,10 +1,16 @@
 'use strict';
 
+// Load Input Validation
+const express = require('express');
+const router = express.Router();
+
+
+// Load User Model
 const User = require('../model/user');
 
 
 /**
- * This is temporary and will be removed
+  * This is temporary and will be removed
  * TODO: REMOVE BEFORE PROD
  * 
  * @param {*} req 
